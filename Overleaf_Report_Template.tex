@@ -1,0 +1,1020 @@
+\documentclass[12pt,a4paper]{report}
+\usepackage{mathtools}
+\usepackage{url}
+\def\UrlFont{\rmfamily}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{array} % for centering columns
+\usepackage{booktabs}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{subcaption}
+\usepackage{wrapfig}
+\usepackage[english]{babel}
+\usepackage[export]{adjustbox}
+\usepackage{enumerate}
+\usepackage[left=3.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage{lineno}
+\usepackage{cite}
+\usepackage{acronym}
+\renewcommand{\baselinestretch}{1.5}
+
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Java,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+\lstset{language=Python}
+	
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+	\begin{center}
+		\begin{huge}
+			\bf{Solar Radiation Prediction Using Machine Learning\\}
+		\end{huge}
+		\vspace*{35pt}		
+		\textbf{A final year project dissertation\\
+			{submitted in partial fulfillment of the requirements \\for the award of the degree of}\\}
+		\vspace{20pt}
+		\textbf{Bachelor of Technology}\\
+		\textbf{in}\\
+	%	\vspace{10pt}
+		\textbf{Electrical Engineering}\\
+		\vspace{10pt}
+		\textbf{by\\
+			\vspace{10pt}
+			 Anurudra Yadav (2020BELE077)\\Dhruv Sharma (2020BELE024)\\ Kaushinder (2020BELE099)\\}
+		\vspace{10pt}
+		Under the supervision of\\
+		\textbf{Dr. Hailiya Ahsan}\\
+            \textbf{Dr. Shoeb Hussain}\\
+%	\textbf{	Assistant Professor}\\
+				\vspace{10pt}
+		\includegraphics[width=0.3\textwidth]{logo.jpg} \\
+		\vspace{10pt}
+		\textbf{DEPARTMENT OF ELECTRICAL  ENGINEERING\\
+			NATIONAL INSTITUTE OF TECHNOLOGY\\
+			SRINAGAR – 190006, J$\&$K (INDIA)\\
+			June, 2024	\\[0.5in]
+   \vspace*{\fill}% * is needed here
+\noindent
+\makebox[\textwidth]{\fontsize{15}{18}\selectfont COPYRIGHT \begin{math} @\end{math} NITSRINAGAR (J\&K), INDIA, 2024}
+\vfill
+   }
+   \end{center}
+   \pagenumbering{gobble}
+\clearpage
+\newcommand{\RN}[1]{%
+	\textup{\uppercase\expandafter{\romannumeral#1}}%
+}
+\pagenumbering{roman}
+   \clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{center}
+	\noindent{\rule{\textwidth}{1.0pt}}
+	\section*{Candidate's Declaration}
+	\noindent{\rule{\textwidth}{1.0pt}}
+\end{center}
+\addcontentsline{toc}{section}{CERTIFICATE}
+\vspace{50pt}
+We affirm the authenticity and originality of our project titled \textbf{ "Solar Radiation Prediction Using Machine Learning"} This project is presented as a partial fulfillment of the requirements for the degree of \textbf{Bachelor of Technology in Electrical Engineering}\textbf{ at National Institute of Technology Srinagar}.
+
+Under the guidance of \textbf{Dr Hailiya Ahsan and  Dr. Shoeb Hussain}, We have undertaken this project work independently. We hereby declare that this dissertation has not been submitted for the attainment of any other degree in this or any other academic institution.
+
+Throughout this academic pursuit, We have diligently respected the intellectual property rights of others and have acknowledged their contributions accordingly. We are fully aware that any infringement of copyright or intellectual property rights, whether in part or in whole, will solely be my responsibility, and We understand that my Supervisor, Head of the Department, or the Institute shall not be held accountable in any manner, even after the conferral of my degree.\\
+\vspace{30pt}\\
+\begin{flushright}
+	
+\end{flushright}
+		\noindent \textbf{Date:} {26-06-2024}  \hfill \textbf{Anurudra Yadav (2020BELE077)}\\ \noindent \textbf{Place:} {Srinagar} \hfill \textbf{ Dhruv Sharma (2020BELE024)}
+  
+		  \hfill \noindent \textbf{  Kaushinder (2020BELE099)}
+		
+		
+		\clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{center}
+	\noindent{\rule{\textwidth}{1.0pt}}
+	\section*{Certificate}
+	\noindent{\rule{\textwidth}{1.0pt}}
+\end{center}
+This is to certify that the project titled \textbf{"Solar Radiation Prediction Using Machine Learning"} submitted by \textbf{Mr. Anurudra Yadav, Mr.Dhruv Sharma, Mr. Kaushinder}, under \textbf{ Enroll No. 2020BELE024, 2020BELE077 and 2020BELE099 respectively}, is a result of their diligent efforts and academic pursuits. That has been conducted under my guidance and supervision in partial fulfillment of the requirements for the degree of \textbf{Bachelor of Technology in Electrical Engineering} at \textbf{ National Institute of Technology Srinagar}.
+
+To the best of my knowledge, the content presented in this project represents their original work and has not been previously submitted to this or any other Institute/University for the purpose of obtaining any degree.\\
+\vspace{20pt}\\
+\noindent \textbf{Date:} {26-06-2024} \hfill \textbf{Dr. Hailiya Ahsan}\\
+\noindent \textbf{Place:} {Srinagar} \hfill Project Supervisor\\
+\begin{flushright}\textbf{Dr. Shoeb Hussain} \end{flushright}
+\begin{flushright}Project Co-Supervisor \end{flushright}
+Approved for evaluation and award of degree.\\
+\vspace{20pt}\\
+\noindent \textbf{Date:} {26-06-2024} \hfill \textbf{Dr.Shekh Javed Iqbal}\\
+\noindent \textbf{Place:} {Srinagar} \hfill Head of the Department\\
+\clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{center}
+	\section*{Acknowledgement}
+	\noindent{\rule{\textwidth}{1.5pt}}
+\end{center}\addcontentsline{toc}{section}{Acknowledgement}
+We would like to take this opportunity to express our deepest appreciation and extend heartfelt acknowledgments to all those who have played a significant role in the completion of our project. Foremost, we are immensely grateful to our supervisor \textbf{Dr. Hailiya Ahsan and Dr. Shoeb Hussain, Assistant Professor, Electrical Engineering Department, National Institute of Technology Srinagar}, for providing us with the invaluable guidance, and continuous encouragement throughout the research journey. Their expertise and insightful feedback have been pivotal in shaping the direction and enhancing the quality of this project. We would also like to extend my sincere gratitude to the esteemed faculty members of the Electrical Engineering Department. Their teachings, mentorship, and scholarly contributions have been instrumental in expanding our knowledge and fostering intellectual growth throughout our academic pursuit.
+\par	
+To our family and friends, We are forever indebted for their understanding, and encouragement. Their constant support and belief in our abilities have been a driving force behind my perseverance, enabling us to overcome challenges and successfully complete this project. Furthermore, We wish to acknowledge the valuable contributions of our colleagues and classmates. Their engagement, insightful discussions, and resource sharing have greatly enriched our understanding and have contributed to the overall excellence of this work.  We are also immensely grateful to God for his blessings throughout this research journey. His divine presence has provided us with strength, inspiration, and clarity of mind, enabling us to overcome challenges and persevere in the face of difficulties.	
+\par
+We are thankful to everyone who has directly or indirectly contributed to the completion of this project. Your support and collaboration have been invaluable, and we genuinely appreciative the knowledge and opportunities we have gained throughout this research endeavor.
+\begin{flushright}
+\vspace{40pt}
+	\textbf{(Dhruv Sharma, Anurudra Yadav $\&$ Kaushinder)}
+\end{flushright}
+\clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{center}
+	\section*{Abstract}
+	\noindent{\rule{\textwidth}{1.5pt}}
+\end{center}\addcontentsline{toc}{section}{Abstract}
+   Solar radiation prediction is crucial for optimizing the efficiency and effectiveness of solar energy systems. Traditional methods of predicting solar radiation often rely on complex physical models and historical data, which can be time-consuming and less accurate. In recent years, artificial intelligence (AI) techniques, such as machine learning (ML) and deep learning (DL), have shown promising results in predicting solar radiation with higher accuracy and 
+efficiency. \\
+This Project Report presents a comprehensive review of AI-based approaches for solar radiation prediction. It explores the use of ML and DL algorithms, such as Linear Regression, Decision Tree Regresor and random forests in predicting solar radiation. The paper discusses the advantages and limitations of these algorithms and compares their performance. \\
+Furthermore, the paper examines the various factors that affect solar radiation prediction, such as weather conditions, geographical location, and time of day. It also discusses the importance of feature selection and data preprocessing in improving the accuracy of solar radiation prediction models. \\
+The study evaluates the performance of AI-based models using real-world solar radiation data and compares their accuracy with traditional methods. The results show that AI-based approaches outperform traditional methods in terms of accuracy and computational efficiency. Additionally, the project Report discusses the 
+challenges and future directions of AI-based solar radiation prediction, such as the need for more comprehensive and diverse datasets, and the integration of AI 
+models. \\
+In conclusion, this paper highlights the potential of AI techniques in improving solar radiation prediction and emphasizes the importance of further research in this area to harness the full potential of solar energy. 
+\clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tableofcontents
+\listoffigures
+\addcontentsline{toc}{section}{List of Figures}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%\listofalgorithms
+%%%\addcontentsline{toc}{section}{List of Algorithms}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter*{List of Abbreviations}
+\addcontentsline{toc}{chapter}{List of Abbreviations}
+\begin{acronym}[TDMA]
+\setlength{\itemsep}{-\parsep}
+\acro{ANN}{Artificial Neural Network}
+\acro{DT}{Decision Tree}
+\acro{K-NN}{K-Nearest Neighbour}
+\acro{LR}{Linear Regression}
+\acro{MLP}{Multi-Layer Perceptron}
+\acro{NB}{Naïve Bayesian}
+\acro{Pred}{Prediction}
+\acro{SQL}{Structured Query Language}
+\acro{SVM}{Support Vector Machine}   
+\acro{NISE}{The National Institute of Solar Energy}
+\acro{NSM}{National Solar Mission}
+\acro{NDCs}{Nationally Determined Contributions}
+\acro{RMSE}{Root mean square error}
+\acro{MAE}{Mean absolute error}
+\end{acronym}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Introduction}
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\textbf{Overview}\\
+The prediction of solar radiation is a critical component in the development and management of solar energy systems. Accurate solar radiation forecasting can significantly enhance the efficiency and reliability of solar power generation, thereby contributing to sustainable energy solutions and reducing dependence on fossil fuels. This project aims to explore the application of machine learning models in predicting solar radiation levels, leveraging various meteorological and environmental factors to achieve precise and reliable forecasts.
+
+\section{Background and Motivation}
+
+Solar energy is one of the most promising renewable energy sources due to its abundance and environmental benefits. However, its variability and dependence on weather conditions pose challenges for consistent energy generation. Traditional methods of solar radiation prediction often rely on physical models and empirical formulas, which can be limited by their complexity and data requirements. The advent of machine learning offers a powerful alternative, enabling the analysis of large datasets and the discovery of complex patterns that can enhance prediction accuracy.
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{india solar.png}
+    \caption{Annual Average Golbal Solar Radiation in India}
+    \label{fig:enter-label}
+\end{figure}
+\section{Objectives}
+
+The primary objective of this project is to develop and evaluate machine learning models capable of predicting solar radiation with high accuracy. Specific objectives include:
+
+1. Data Collection and Preprocessing: Gather historical solar radiation data along with relevant meteorological variables such as temperature, humidity, cloud cover, and wind speed. Clean and preprocess the data to ensure its suitability for model training.
+   
+2. Feature Selection and Engineering: Identify key features that influence solar radiation and perform feature engineering to enhance the predictive power of the models.
+   
+3. Model Development: Implement and train various machine learning models, including but not limited to linear regression, decision trees, random forests, support vector machines, and neural networks.
+
+4. Model Evaluation: Assess the performance of the developed models using appropriate metrics such as Mean Absolute Error (MAE), Root Mean Squared Error (RMSE), and R-squared (R²). Compare the results to identify the most effective model for solar radiation prediction.
+
+5. Deployment and Application: Discuss the potential application of the best-performing model in real-world scenarios, such as optimizing solar panel placement, managing energy storage systems, and integrating with smart grid technologies.
+
+\section{Significance and Impact}
+
+The successful implementation of machine learning models for solar radiation prediction can have profound implications for the renewable energy sector. By improving forecast accuracy, energy providers can optimize the operation of solar power plants, enhance grid stability, and reduce the reliance on supplementary fossil fuel-based power generation. Additionally, accurate solar radiation predictions can aid in the planning and deployment of solar energy projects, making them more economically viable and environmentally friendly.
+
+\section{Structure of the Report}
+
+This report is structured as follows:
+
+1. Literature Review: An overview of existing methods and research in solar radiation prediction.
+   
+2. Methodology: Detailed description of the data collection, preprocessing, feature selection, and model development processes.
+   
+3. Results and Discussion: Presentation and analysis of the model performance results.
+   
+4. Conclusion and Future Work: Summary of findings, implications for the renewable energy sector, and potential directions for future research.
+
+Through this project, we aim to demonstrate the potential of machine learning in advancing solar radiation prediction, thereby contributing to the broader goal of sustainable energy development.
+\chapter{Literature Review}
+
+\textbf{Overview of Solar Radiation Prediction Methods}
+
+Solar radiation prediction has long been a subject of extensive research, given its critical importance in the design and operation of solar energy systems. Traditional methods for predicting solar radiation have typically relied on physical models, empirical approaches, or a combination of both. These methods, while useful, often come with limitations such as the need for detailed site-specific data and complex calculations that can be computationally intensive. 
+
+\section{Traditional Methods}
+
+\textbf{Physical Models:}
+Physical models for solar radiation prediction are based on understanding the physical processes that govern solar radiation's interaction with the Earth's atmosphere. These models often include parameters such as solar angles, atmospheric conditions, and geographic location. Examples of physical models include the ASHRAE Clear Sky Model and the Bird Clear Sky Model. While these models can be highly accurate, they require extensive and precise input data, which can be a barrier to their widespread application.\\
+\textbf{Empirical Models:}
+Empirical models use historical solar radiation data to establish statistical relationships between solar radiation and other meteorological variables. Common empirical models include the Angstrom-Prescott model, which relates solar radiation to sunshine duration, and models that correlate solar radiation with temperature and cloud cover. These models are generally simpler to implement than physical models but can be less accurate when applied to locations or conditions that differ significantly from those used to develop the models.
+
+\section{Machine Learning Approaches}
+
+The advent of machine learning has introduced new possibilities for solar radiation prediction. Machine learning models can analyze large and complex datasets, uncovering patterns and relationships that may not be apparent through traditional methods. These models can adapt to new data, potentially offering more accurate and robust predictions.
+
+\textbf{Types of Machine Learning Models}
+
+1. Linear Regression\\
+   Linear regression models predict solar radiation based on the linear relationship between the dependent variable (solar radiation) and one or more independent variables (e.g., temperature, humidity). While simple and interpretable, linear regression may not capture the nonlinear relationships often present in meteorological data.
+
+2. Decision Trees and Random Forests\\
+   Decision trees split the data into subsets based on the values of the input variables, leading to a tree-like model of decisions. Random forests, an ensemble method, combine multiple decision trees to improve prediction accuracy and reduce overfitting. These models can handle both linear and nonlinear relationships and are relatively robust to outliers.
+
+3. Support Vector Machines (SVM)\\
+   SVMs are effective in high-dimensional spaces and are used for regression and classification tasks. They work by finding the hyperplane that best separates the data into classes or predicts continuous values. SVMs are powerful but can be computationally intensive and require careful tuning of parameters.
+
+4. Neural Networks\\
+   Neural networks, especially deep learning models, have gained popularity for their ability to model complex, nonlinear relationships. Convolutional neural networks (CNNs) and recurrent neural networks (RNNs) are particularly useful for handling spatial and temporal data, respectively. Neural networks require large datasets and significant computational resources but can provide high prediction accuracy.
+
+\section{Comparative Studies}
+
+Several studies have compared the performance of different machine learning models in predicting solar radiation. For instance, Voyant et al. (2017) evaluated various models, including linear regression, decision trees, SVMs, and neural networks, finding that ensemble methods like random forests and deep learning models generally outperformed simpler models in terms of accuracy and robustness. Similarly, a study by Wang et al. (2019) demonstrated that deep learning approaches, particularly long short-term memory (LSTM) networks, excelled in capturing the temporal dependencies in solar radiation data, leading to more accurate predictions.
+
+\section{Hybrid Models}
+
+Hybrid models combine traditional methods with machine learning techniques to leverage the strengths of both approaches. For example, a hybrid model might use a physical model to generate initial predictions and then apply machine learning algorithms to refine these predictions based on additional meteorological data. Such approaches can improve prediction accuracy while maintaining the interpretability and robustness of physical models.
+
+\section{Challenges and Future Directions}
+
+Despite the advancements, several challenges remain in the field of solar radiation prediction. These include the need for high-quality, comprehensive datasets, the computational complexity of advanced machine learning models, and the difficulty in interpreting complex models. Future research may focus on developing more efficient algorithms, improving data collection methods, and integrating multiple data sources to enhance prediction accuracy.
+
+\textbf{Conclusion}
+
+The literature indicates a clear shift towards the use of machine learning models in solar radiation prediction, driven by their ability to handle large datasets and model complex relationships. While traditional methods provide a solid foundation, machine learning approaches offer significant improvements in accuracy and adaptability. As the field progresses, hybrid models and advancements in data science are likely to play a crucial role in overcoming existing challenges and further enhancing the reliability of solar radiation forecasts.
+
+\chapter{Importance of Solar Radiation Prediction}
+Solar resource forecasting is very important for the operation and management of solar 
+power plants. Solar radiation is highly variable because it is driven mainly by synoptic 
+and local weather patterns. This high variability presents challenges to meeting power 
+production and demand curves, notably in the case of photovoltaic (PV) power plants, 
+which have little or no storage capacity. For concentrating solar power (CSP) plants, 
+variability issues are partially mitigated by the thermal inertia of the plant, including its 
+heat transfer fluid, heat exchangers, turbines and, potentially, coupling with a heat 
+storage facility; however, temporally and spatially varying irradiance introduces thermal 
+stress in critical system components and plant management issues that can result in the 
+degradation of the overall system’s performance and reduction of the plant’s lifetime. 
+Solar radiation prediction is a crucial component of renewable energy planning, grid 
+management, and climate research. Its importance stems from its role in optimizing 
+energy production, improving grid stability, reducing costs, advancing climate 
+understanding, and aiding in urban planning and agriculture\\
+1. Optimizing Energy Production: Solar radiation prediction enables solar power 
+plants to optimize their energy production. By forecasting sunlight availability, these 
+plants can adjust their operations, such as tilting solar panels or managing energy 
+storage, to maximize energy output. This optimization leads to increased efficiency and 
+a more stable energy supply.\\
+2. Grid Management: Solar radiation prediction is essential for grid operators to 
+manage the integration of solar energy into the grid. Accurate predictions allow 
+operators to anticipate fluctuations in solar power generation and balance supply and 
+demand accordingly. This helps prevent overloading the grid during periods of high 
+solar generation and ensures a reliable energy supply.\\
+3. Cost Reduction: Accurate solar radiation prediction can lead to cost reductions in 
+several ways. By optimizing energy production, solar power plants can reduce their 
+operating costs and improve their profitability. Additionally, grid operators can avoid 
+costly grid upgrades by efficiently managing solar energy integration, leading to overall 
+cost savings for energy consumers.\\
+4. Climate Research: Solar radiation data is crucial for climate research and modeling. 
+It provides insights into the Earth's energy balance, which is essential for understanding 
+climate patterns and trends. Solar radiation prediction helps researchers study the impact 
+of solar variability on the climate and improve climate change predictions.\\
+5. Urban Planning and Agriculture: Solar radiation prediction has practical 
+applications in urban planning and agriculture. In urban areas, accurate predictions can 
+help architects and city planners design buildings and infrastructure that maximize 
+natural lighting and energy efficiency. In agriculture, solar radiation data can assist 
+farmers in planning crop planting and harvesting times, leading to improved yields and 
+resource management.
+Overall, solar radiation prediction is a critical tool for maximizing the benefits of solar 
+energy while minimizing its impact on the environment. By improving our ability to 
+forecast solar radiation, we can increase the reliability and efficiency of solar energy 
+systems, contributing to a more sustainable future.
+\section{Current Methods and Challenges}
+\subsection{Current Methods}
+\textbf{1. Satellite Data:} Satellites provide a wide range of data for solar radiation prediction, 
+including direct measurements of solar radiation and indirect measurements such as 
+cloud cover and atmospheric conditions. These data are used in models to estimate solar 
+radiation levels at different locations on Earth. While satellite data offer broad coverage, 
+they can be limited by factors such as cloud cover, which can obscure the view of the 
+sun and affect the accuracy of the predictions.\\
+\textbf{2. Ground-Based Sensors:} Ground-based sensors directly measure solar radiation at 
+specific locations. These sensors provide real-time data, allowing for more immediate 
+adjustments to solar energy production and grid management. However, their coverage 
+is limited to the areas where the sensors are installed, making it challenging to obtain 
+comprehensive data for large regions.\\
+\textbf{3. Numerical Models:} Numerical models simulate the interactions of sunlight with the 
+Earth's atmosphere and surface to predict solar radiation levels. These models 
+incorporate data from satellite observations, ground-based measurements, and 
+atmospheric models to estimate solar radiation under different conditions. While 
+numerical models can provide valuable insights into solar radiation patterns, they can be 
+computationally intensive and require accurate input data to produce reliable 
+predictions.
+\subsection{Challenges}
+\textbf{1.Cloud Cover:} Cloud cover is a major challenge in solar radiation prediction, as 
+clouds can block or scatter sunlight, significantly affecting the amount of solar radiation 
+that reaches the Earth's surface. Predicting cloud cover and its impact on solar radiation 
+is complex due to the variability of cloud formations and movements.\\
+\textbf{2.Atmospheric Conditions:} Changes in atmospheric conditions, such as aerosol 
+concentrations and water vapor content, can alter the path of sunlight and affect solar 
+radiation levels. These changes are challenging to predict accurately, particularly in 
+regions with complex terrain or weather patterns.\\
+\textbf{3. Data Accuracy:} Ensuring the accuracy of input data is crucial for reliable solar 
+radiation prediction. Errors or inaccuracies in satellite data, ground-based 
+measurements, or atmospheric models can lead to inaccuracies in the predictions. 
+Calibration and validation of data sources are essential to improving prediction 
+accuracy.\\
+\textbf{4. Resolution:} Achieving high spatial and temporal resolution in solar radiation 
+prediction is important for applications such as solar energy planning and grid 
+management. However, obtaining high-resolution data can be challenging, particularly 
+in remote or inaccessible areas.\\
+\textbf{5.Model Complexity:} Modeling sunlight interactions with the Earth's atmosphere and 
+surface requires complex algorithms and computational resources. Improving the 
+accuracy and efficiency of these models is an ongoing challenge in solar radiation 
+prediction.
+Addressing these challenges requires ongoing research and development in areas such as 
+remote sensing, atmospheric modeling, and data assimilation. Advances in technology 
+and data availability are essential for improving the accuracy and reliability of solar 
+radiation prediction models.
+\section{The UV Index and Effects of Sun on Skin}
+Humans are exposed to UV radiation, especially UVA and UVB radiation, 
+which can be dangerous to their skin. One of the ways we have to measure the negative 
+consequences of this type of radiation on people is the global solar UV index 
+(UVI). This index ranges from one to eleven and the higher the index, the greater the 
+likelihood of skin and eye damage.
+\begin{figure} [!ht]
+    \centering
+    \includegraphics[width=0.5\textwidth]{challenge.png}
+    \caption{Pyranometer}
+    \label{fig:enter-label}
+\end{figure}
+Among other consequences, it increases the chances of sunburn, premature ageing and 
+even skin cancer, especially in people with a lighter phototype. For this reason, the IUV 
+is an important and differential element in raising public awareness of the risks of 
+excessive exposure, warning of the imminent need to adopt protective measures to 
+minimise the risks.\\
+Staying out of the sun in the middle of the day and, if there is no alternative, staying in 
+the shade and drinking plenty of water.\\
+Wearing protective clothing, like hats, caps or carrying parasols to protect the eyes, face 
+and neck, and light garments.
+Wear good quality sunglasses, in other words those with certified lenses and, if possible, 
+with a wraparound design and with side panels.\\
+Use sun protection cream with a sun protection factor higher than 15, although it is
+advisable to choose according to the skin phototype, half an hour before exposure. 
+Apply generously and repeat as often as necessary.\\
+\chapter{Methodology} 
+\section{Approach}
+Our approach to solar radiation prediction involves a detailed methodology that 
+integrates advanced machine learning algorithms with high-resolution satellite data. 
+Here's a comprehensive overview of our approach \\
+\textbf{1. Data Collection:} We collect a diverse range of data sources, including: Historical 
+solar radiation data from ground-based stations or satellite observations. High
+resolution satellite imagery to capture cloud cover, atmospheric conditions, and 
+surface reflectance. Weather data from ground-based stations, including temperature, 
+humidity, wind speed, and precipitation. Atmospheric conditions data, such as air 
+pressure, moisture content, and aerosol levels. This comprehensive dataset provides 
+the foundation for our solar radiation prediction model.\\ 
+\textbf{2. Data Preprocessing:} The collected data undergoes preprocessing to ensure its 
+quality and suitability for analysis. This includes cleaning the data to remove noise, 
+correcting errors, and standardizing formats. We also perform data normalization and 
+transformation to prepare it for input into our machine learning models. \\
+\textbf{3. Feature Selection:} We use feature selection techniques to identify the most 
+relevant features for predicting solar radiation levels. These features may include 
+variables such as time of day, day of year, solar zenith angle, cloud cover, and 
+atmospheric conditions. Feature selection helps reduce the dimensionality of the data 
+and improve the efficiency of our models. \\
+\textbf{4. Model Selection:} We select machine learning algorithms based on their suitability 
+for solar radiation prediction. Commonly used algorithms include regression models 
+(e.g., linear regression, support vector regression), decision trees (e.g., random 
+forests), and neural networks. We also consider ensemble methods, such as bagging 
+and boosting, to combine multiple models for improved accuracy. 
+\begin{figure} [!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{electronics-12-01007-g001.png}
+    \caption{Testing of figure}
+    \label{fig:enter-label}
+\end{figure}\\
+\textbf{5. Model Training:} The selected models are trained using the pre-processed data and 
+selected features. We use techniques like cross-validation to split the data into training  
+and validation sets, optimizing the model hyperparameters to prevent overfitting. 
+Training the model involves iteratively adjusting the model parameters to minimize 
+the prediction error. \\
+\textbf{6. Model Evaluation:} We evaluate the trained models using validation data to assess 
+their performance. Common evaluation metrics include mean absolute error (MAE), 
+root mean square error (RMSE), and coefficient of determination (R-squared). We  
+compare the performance of our models with baseline models or existing methods to 
+validate their effectiveness. \\
+\textbf{7. Prediction Generation:} Once trained and validated, the models are used to 
+generate solar radiation predictions. These predictions are based on current weather 
+conditions, satellite imagery, and other relevant factors, providing real-time or near
+real-time estimates of solar radiation levels. \\
+\textbf{8. Model Deployment:} The trained models are deployed for real-world use, such as in 
+solar energy planning, grid management, or climate research. We continuously 
+monitor the performance of the models and update them as needed to ensure their 
+accuracy and reliability.
+\section{Objectives}
+
+The primary objectives of solar radiation prediction are to optimize the design and placement of solar energy systems for maximum efficiency, improve energy management by balancing supply and demand, and achieve economic benefits by reducing operational costs and enhancing the return on investment for solar projects. Accurate predictions support the development of sustainable energy policies and maximize the potential of solar energy.\\
+\textbf{1. Develop a Robust Prediction Model:} Utilize advanced machine learning 
+algorithms, such as deep learning and ensemble methods, to develop a prediction 
+model. Incorporate diverse datasets, including historical solar radiation data, satellite 
+imagery, weather data, and atmospheric conditions, to improve prediction accuracy. 
+Implement feature selection techniques to identify the most relevant features for 
+predicting solar radiation levels. \\
+\textbf{2. Improve Renewable Energy Planning:} Provide accurate and reliable solar 
+radiation predictions to support the planning and operation of solar power plants. 
+Optimize energy production forecasts to maximize the efficiency of solar power 
+generation. Enhance grid integration of solar energy by providing real-time or near
+real-time solar radiation predictions to grid operators.\\ 
+\textbf{3. Enhance Grid Management:} Develop tools and models to help grid operators 
+manage the variability of solar energy generation. Provide insights and 
+recommendations for balancing supply and demand, maintaining grid stability, and 
+optimizing energy distribution. \\
+\textbf{4. Advance Climate Research:} Contribute to climate research by providing high
+quality solar radiation data for studying climate patterns and trends. Improve 
+understanding of solar variability and its impact on the Earth's climate system.\\ 
+\textbf{5. Support Sustainable Development:} Promote the use of renewable energy sources, 
+such as solar energy, to reduce reliance on fossil fuels and mitigate climate change. 
+Support sustainable development goals by providing reliable and actionable 
+information for energy planning and decision-making.\\ 
+\textbf{6. Enable Data-Driven Decision Making:} Provide stakeholders with reliable and up
+to-date information based on data-driven predictions. Enable informed decision
+making regarding energy planning, grid management, and climate adaptation. \\
+\textbf{7. Facilitate Integration of Renewable Energy:} Support the integration of renewable 
+energy sources into existing energy systems by providing accurate solar radiation 
+predictions. Optimize the use of solar energy and reduce dependence on non
+renewable energy sources. \\
+By achieving these objectives, our project aims to contribute to the advancement of 
+renewable energy technologies, improve the efficiency and reliability of solar energy 
+systems, and support sustainable development practices.
+\section{Data Collection} 
+Our approach to data collection for solar radiation prediction involves gathering 
+diverse datasets from multiple sources. Here's a detailed outline of our data collection 
+process: \\
+\textbf{1. Historical Solar Radiation Data:} Collect historical solar radiation data from 
+ground-based stations or satellite observations. Include data on solar radiation levels at 
+regular intervals (e.g., hourly or daily averages) over an extended period (e.g., several 
+years). Ensure data quality by performing quality control checks and correcting any 
+anomalies or errors. \\
+\textbf{2. Satellite Imagery:} Obtain high-resolution satellite imagery from sources such as 
+NASA or commercial satellite providers. Use satellite imagery to capture cloud cover, 
+atmospheric conditions, and surface reflectance, which are critical factors influencing 
+solar radiation levels. Ensure timely access to satellite data to provide up-to-date 
+information for solar radiation prediction. \\
+\textbf{3. Weather Data:} Gather weather data from ground-based stations, including 
+temperature, humidity, wind speed, and precipitation. Use weather data to account for 
+local weather conditions that can impact solar radiation levels, such as cloud cover 
+and atmospheric stability. Ensure the accuracy and reliability of weather data by 
+calibrating and validating against other sources.\\ 
+\textbf{4. Atmospheric Conditions Data:} Collect data on atmospheric conditions, such as air 
+pressure, moisture content, and aerosol levels. Use atmospheric data to account for the 
+effects of atmospheric composition and conditions on solar radiation levels. Ensure 
+the availability of atmospheric data for the target region and time period of interest. \\
+\textbf{5. Data Preprocessing:} Preprocess the collected data to remove outliers, correct 
+errors, and standardize formats. Perform data normalization and transformation to 
+prepare the data for input into machine learning models. Ensure that the pre-processed 
+data is clean and suitable for analysis. \\
+\textbf{6. Data Integration:} Integrate the various datasets (e.g., solar radiation data, satellite 
+imagery, weather data) to create a comprehensive dataset for solar radiation 
+prediction. Use data integration techniques to combine data from different sources and 
+formats into a unified dataset.By following this detailed data collection process, we 
+aim to gather the necessary data for training our machine learning models and 
+improving the accuracy of solar radiation prediction. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Technical Approach}
+The technical approach in a solar radiation prediction project involves collecting data from sensors, weather stations, and satellites, followed by preprocessing to clean and integrate the data. Advanced machine learning and statistical models are then used to predict solar radiation patterns. These models are validated and tested for reliability, and the predictions are integrated into solar energy management systems to optimize energy production and usage.
+\section{Reading the dataset }\\
+\begin{lstlisting}
+import numpy as np
+import pandas as pd
+import seaborn as sns
+from datetime import date
+import matplotlib.pyplot as plt
+from collections import defaultdict
+import matplotlib.lines as mlines
+import matplotlib.transforms as mtransforms    
+\end{lstlisting}
+\begin{lstlisting}
+df = pd.read_csv('C:/Users/singh/OneDrive/Desktop/Solar project/SolarPrediction.csv')
+display(df)
+\end{lstlisting}
+\begin{figure} [!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Screenshot 2024-06-24 140042.png}
+    \caption{Description of Dataset}
+    \label{fig:enter-label}
+\end{figure}
+\section{Data Cleaning}
+\begin{lstlisting}
+def func_date(data):
+    data = data.split()
+    data = data[0]
+    data = data.split('/') 
+
+    day = int(data[1])
+    month = int(data[0])
+    year = int(data[2])
+
+    date1 = date(year-1, 12, 31)
+    date2 = date(year, month, day)
+    diff = date2 - date1
+    diff = str(diff)
+    diff = diff.split(' ')
+
+    return int(diff[0])
+
+def func_time(data):
+    data = data.split(':')
+    time = int(data[0])*3600 + int(data[1])*60 + int(data[2])
+    return time
+\end{lstlisting}
+\begin{lstlisting}
+df['Date'] = df['Date'].apply(func_date) 
+df['Time'] = df['Time'].apply(func_time) 
+df['TimeSunRise'] = df['TimeSunRise'].apply(func_time) 
+df['TimeSunSet'] = df['TimeSunSet'].apply(func_time) 
+display(df)
+\end{lstlisting}
+\begin{figure} [!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Screenshot 2024-06-24 140728.png}
+    \caption{Clean Dataset}
+    \label{fig:enter-label}
+\end{figure}
+\section{Summarizing Dataset}
+\begin{lstlisting}
+    df.describe()
+\end{lstlisting}
+\begin{figure} [!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Screenshot 2024-06-24 140953.png}
+    \caption{Summarize Dataset}
+    \label{fig:enter-label}
+\end{figure}
+\begin{lstlisting}
+    plt.rcParams["font.size"] = 14
+    df.hist(figsize=(12,12))
+    plt.tight_layout()
+    plt.show()
+\end{lstlisting}
+\begin{figure} [!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Screenshot 2024-06-21 225015.png}
+    \caption{Histogram map of attributes}
+    \label{fig:enter-label}
+\end{figure}
+\subsection{Hourly Average Plots}
+\begin{lstlisting}
+plt.rcParams["figure.figsize"] = (22, 12)
+
+columns = ['Temperature',	'Pressure',	'Humidity',	'Speed']
+
+hourlyY1 = defaultdict(list)
+for index, row in df.iterrows():
+  hourlyY1[row['Time']//3600].append(row['Radiation'])
+
+hour = list(hourlyY1.keys())
+Y1 = []
+for hr in hour:
+  Y1.append(sum(hourlyY1[hr])/len(hourlyY1[hr]))
+
+for ind, ylabel in enumerate(columns):
+
+  hourlyY2 = defaultdict(list)
+  for index, row in df.iterrows():
+    hourlyY2[row['Time']//3600].append(row[ylabel])
+
+  hour = list(hourlyY2.keys())
+  Y2 = []
+  for hr in hour:
+    Y2.append(sum(hourlyY2[hr])/len(hourlyY2[hr]))
+
+  ax1 = plt.subplot(2, 2, ind+1)
+
+  color = 'tab:red'
+  ax1.set_xlabel('Time (hr)', labelpad=15)
+  ax1.set_ylabel('Radiation', color=color, labelpad=15)
+  ax1.plot(hour, Y1, color=color, linewidth=2, label='Radiation')
+  ax1.tick_params(axis='y', labelcolor=color)
+  ax1.legend(loc='upper left')
+
+  ax2 = ax1.twinx()
+
+  color = 'tab:blue'
+  ax2.set_ylabel(ylabel, color=color, labelpad=15)
+  ax2.plot(hour, Y2, color=color, linewidth=2, label=ylabel)
+  ax2.tick_params(axis='y', labelcolor=color)
+  ax2.legend(loc='upper right')
+
+plt.tight_layout()
+\end{lstlisting}\begin{figure} [!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Screenshot 2024-06-24 142838.png}
+    \caption{Hourly Solar radiation Graph}
+    \label{fig:enter-label}
+\end{figure}
+\section{Feature Selection}
+\subsection{correlation Matrix}
+\begin{lstlisting}
+    display(df.corr(method='pearson'))
+\end{lstlisting}
+\begin{figure} [!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Screenshot 2024-06-24 141838.png}
+    \caption{Correlation Matrix}
+    \label{fig:enter-label}
+\end{figure}
+\subsection{Correlation Heatmap}
+\begin{lstlisting}
+    plt.rcParams["font.size"] = 14
+    df.hist(figsize=(12,12))
+    plt.tight_layout()
+    plt.show()
+\end{lstlisting}
+\begin{figure} [!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Screenshot 2024-06-24 141545.png}
+    \caption{Correlation Heatmap}
+    \label{fig:enter-label}
+\end{figure}
+\begin{lstlisting}
+   plt.rcParams["figure.figsize"] = (14, 14)
+   plt.rcParams["font.size"] = 14
+
+   ylabel = 'Radiation'
+   columns = ['Date', 'Time', 'Temperature',	'Pressure',	'Humidity',	'WindDirection',	'Speed',	'TimeSunRise',	'TimeSunSet']
+
+  for index, xlabel in enumerate(columns):
+    plt.subplot(3, 3, index+1)
+    plt.scatter(df[xlabel], df[ylabel],color='blue',marker='+',linewidth=0.5)
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+    plt.title(ylabel + ' vs ' + xlabel)
+
+  plt.tight_layout()
+\end{lstlisting}
+\begin{figure} [!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Screenshot 2024-06-21 225310.png}
+    \caption{Scatter plot of Radiation vs Attributes}
+    \label{fig:enter-label}
+\end{figure}
+\section{Training and Testing the models}
+\begin{lstlisting}
+from sklearn.model_selection import train_test_split 
+Y = df['Radiation'].values 
+df.drop(['Radiation'], axis=1, inplace=True) 
+X = df.values 
+RS = 1811 
+X_train, X_test, Y_train, Y_test = train_test_split(X,Y,test_size=0.2, 
+random_state=RS) 
+\end{lstlisting}
+\chapter{Models}
+\section{Linear Regression Model}
+\textbf{Overview}\\
+A linear regression model predicts the relationship between a dependent variable and one or more independent variables by fitting a straight line through the data points. It works by minimizing the differences between the observed values and the predicted values. This model is widely used due to its simplicity, interpretability, and effectiveness in identifying trends and making predictions across various fields, such as economics, biology, engineering, and social sciences.
+\subsection{Approach Behind Linear 
+Regression}
+Linear regression predicts the relationship between two variables by assuming they have a straight-line connection. It finds the best line that minimizes the differences between predicted and actual values. Used in fields like economics and finance, it helps analyze and forecast data trends. Linear regression can also involve several variables (multiple linear regression) or be adapted for yes/no questions (logistic regression).
+
+\textbf{Simple Linear Regression}\\
+There is one independent variable and one dependent variable. The model estimates the slope and intercept of the line of best fit, which represents the relationship between the variables. The slope represents the change in the dependent variable for each unit change in the independent variable, while the intercept represents the predicted value of the dependent variable when the independent variable is zero.
+
+Linear regression is a quiet and the simplest statistical regression technique used for predictive analysis in machine learning. Linear regression shows the linear relationship between the independent(predictor) variable i.e. X-axis and the dependent (output) variable i.e. Y-axis, called linear regression. If there is a single input variable X (independent variable), such linear regression is simple linear regression.\\
+\begin{figure} [!ht]
+    \centering
+    \includegraphics[width=0.6\textwidth]{945791.jpg}
+    \caption{Simple Linear Regression}
+    \label{fig:enter-label}
+\end{figure}
+ Simple Linear Regression
+The graph above presents the linear relationship between the output(y) and predictor(X) variables. The blue line is referred to as the best-fit straight line. Based on the given data points, we attempt to plot a line that fits the points the best.
+
+
+\textbf{Simple Regression Calculation}\\
+To calculate best-fit line linear regression uses a traditional slope-intercept form which is given below,
+
+The goal of the linear regression algorithm is to get the best values for B 0 and B 1 to find the best-fit line. The best-fit line is a line that has the least error which means the error between predicted values and actual values should be minimum.
+\begin{figure} [!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{375512.jpg}
+    \caption{Linear Regression Calcultion Graph}
+    \label{fig:enter-label}
+\end{figure}
+Simple Linear Regression explanation
+But how the linear regression finds out which is the best fit line?
+
+The goal of the linear regression algorithm is to get the best values for B0 and B1 to find the best fit line. The best fit line is a line that has the least error which means the error between predicted values and actual values should be minimum.
+\subsection{Code}
+\begin{lstlisting}
+!pip install xgboost==1.5.0 
+from sklearn.svm import SVR 
+from xgboost import XGBRegressor 
+from sklearn.tree import DecisionTreeRegressor 
+from sklearn.neural_network import MLPRegressor 
+from sklearn.linear_model import LinearRegression 
+from sklearn.ensemble import RandomForestRegressor 
+from sklearn.ensemble import GradientBoostingRegressor 
+\end{lstlisting}
+\subsection{Prediction Using Linear Regression 
+Model}
+\begin{lstlisting}
+lr=LinearRegression()
+lr.fit(X_train, Y_train)
+pred=lr.predict(X_test)
+
+m=lr.coef_
+m
+\end{lstlisting}
+array([ 1.98104301e+00, -2.07962649e-03,  4.38422669e+01, -3.59256338e+02, 5.47659755e-01, -2.74759504e-01,  5.44636736e+00])
+\begin{lstlisting}
+c=lr.intercept_
+c
+\end{lstlisting}
+8343.381813532798
+\subsection{Result}
+\begin{lstlisting}
+print("Accuracy for Train data sets")
+print( lr.score(X_train, Y_train)*100,'%')
+print("Accuracy for Test data sets")
+print( lr.score(X_test, Y_test)*100,'%')
+\end{lstlisting}
+Accuracy for Train data sets\\
+61.90414543792242 \%\\
+Accuracy for Test data sets\\
+62.5918994079995 \%\\
+\begin{figure} [!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Screenshot 2024-06-22 004059.png}
+    \caption{Linear Regression Real vs Predicted}
+    \label{fig:enter-label}
+\end{figure}
+
+\section{Decision Tree Regressor}
+\textbf{Overview}\\
+A decision tree is a machine learning algorithm used for both classification and regression tasks. It works by recursively splitting the data into subsets based on the values of input features, creating a tree-like model of decisions. Each internal node represents a feature, each branch represents a decision rule, and each leaf node represents an outcome. Decision trees are intuitive and easy to interpret, as they mimic human decision-making processes. They can handle both numerical and categorical data and are robust to outliers. However, they can be prone to overfitting, which can be mitigated by techniques like pruning, setting a maximum depth, or using ensemble methods such as random forests.
+\subsection{Approach behind Decision Tree}
+A decision tree is a hierarchical model used in decision support that depicts decisions and their potential outcomes, incorporating chance events, resource expenses, and utility. This algorithmic model utilizes conditional control statements and is non-parametric, supervised learning, useful for both classification and regression tasks. The tree structure is comprised of a root node, branches, internal nodes, and leaf nodes, forming a hierarchical, tree-like structure.\\
+Decision trees can be used for classification as well as regression problems. The name itself suggests that it uses a flowchart like a tree structure to show the predictions that result from a series of feature-based splits. It starts with a root node and ends with a decision made by leaves.
+\begin{figure} [!ht]
+    \centering
+    \includegraphics[width=0.7\textwidth]{decision-tree.jpg}
+    \caption{Decion Tree flow Chart}
+    \label{fig:enter-label}
+\end{figure}
+\textbf{Decision Tree algorithm works in simpler steps:}\\
+Starting at the Root: The algorithm begins at the top, called the “root node,” representing the entire dataset.
+Asking the Best Questions: It looks for the most important feature or question that splits the data into the most distinct groups. This is like asking a question at a fork in the tree.
+Branching Out: Based on the answer to that question, it divides the data into smaller subsets, creating new branches. Each branch represents a possible route through the tree.
+Repeating the Process: The algorithm continues asking questions and splitting the data at each branch until it reaches the final “leaf nodes,” representing the predicted outcomes or classifications.
+\subsection{Code}
+\begin{lstlisting}
+!pip install xgboost==1.5.0 
+from sklearn.svm import SVR 
+from xgboost import XGBRegressor 
+from sklearn.tree import DecisionTreeRegressor 
+from sklearn.neural_network import MLPRegressor 
+from sklearn.linear_model import LinearRegression 
+from sklearn.ensemble import RandomForestRegressor 
+from sklearn.ensemble import GradientBoostingRegressor 
+\end{lstlisting}
+\subsection{Prediction Using Decision Tree Regressor}
+\begin{lstlisting}
+from sklearn.tree import DecisionTreeRegressor
+dtr = DecisionTreeRegressor(random_state=RS)
+dtr.fit(X_train, Y_train)
+\end{lstlisting}
+\subsection{Result}
+\begin{lstlisting}
+print("Accuracy for Train data sets")
+print('train', dtr.score(X_train, Y_train))
+print("Accuracy for Test data sets")
+print('test', dtr.score(X_test, Y_test))
+\end{lstlisting}
+Accuracy for Train data sets\\
+train 1.0\\
+Accuracy for Test data sets\\
+test 0.8748831378034979
+\begin{figure} [!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Screenshot 2024-06-22 004124.png}
+    \caption{decision Tree Real vs Predicted values}
+    \label{fig:enter-label}
+\end{figure}
+\section{Random Forest Regressor}
+\textbf{Overview}\\
+The random forest model is a machine learning algorithm that builds multiple decision trees during training and outputs the average prediction (for regression) or mode of predictions (for classification) of the individual trees. It reduces overfitting by using subsets of the training data and random feature selection. Random forests handle large datasets with high dimensionality, maintain accuracy with missing data, and provide estimates of feature importance. They are widely used in finance, healthcare, and marketing for their robustness and flexibility.
+\subsection{Approach behind Random Forest Regressor}
+Random forest, a popular machine learning algorithm developed by Leo Breiman and Adele Cutler, merges the outputs of numerous decision trees to produce a single outcome. Its popularity stems from its user-friendliness and versatility, making it suitable for both classification and regression tasks.
+
+Its widespread popularity stems from its user-friendly nature and adaptability, enabling it to tackle both classification and regression problems effectively. The algorithm’s strength lies in its ability to handle complex datasets and mitigate over fitting, making it a valuable tool for various predictive tasks in machine learning.
+
+One of the most important features of the Random Forest Algorithm is that it can handle the data set containing continuous variables, as in the case of regression, and categorical variables, as in the case of classification. It performs better for classification and regression tasks. In this tutorial, we will understand the working of random forest and implement random forest on a classification task.
+\begin{figure} [!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Random forest Flow chart.png}
+    \caption{Random Forest Flow Chart}
+    \label{fig:enter-label}
+\end{figure}
+\textbf{Steps Involved in Random Forest Algorithm}\\
+Step 1: In the Random forest model, a subset of data points and a subset of features is selected for constructing each decision tree. Simply put, n random records and m features are taken from the data set having k number of records.\\
+Step 2: Individual decision trees are constructed for each sample.\\
+Step 3: Each decision tree will generate an output.\\
+Step 4: Final output is considered based on Majority Voting or Averaging for Classification and regression, respectively.
+\subsection{Code}
+\begin{lstlisting}
+!pip install xgboost==1.5.0 
+from sklearn.svm import SVR 
+from xgboost import XGBRegressor 
+from sklearn.tree import DecisionTreeRegressor 
+from sklearn.neural_network import MLPRegressor 
+from sklearn.linear_model import LinearRegression 
+from sklearn.ensemble import RandomForestRegressor 
+from sklearn.ensemble import GradientBoostingRegressor 
+\end{lstlisting}
+\subsection{Prediction Using Random Forest Regressor}
+\begin{lstlisting}
+from sklearn.ensemble import RandomForestRegressor 
+rfr = RandomForestRegressor(random_state=RS)
+rfr.fit(X_train, Y_train)
+\end{lstlisting}
+\subsection{Result}
+\begin{lstlisting}
+print("Accuracy for Train data sets")
+print('train', dtr.score(X_train, Y_train))
+print("Accuracy for Test data sets")
+print('test', dtr.score(X_test, Y_test))
+\end{lstlisting}
+Accuracy for Train data sets\\
+train 0.990636239140551\\
+Accuracy for Test data sets\\
+test 0.938671525993316
+\begin{figure} [!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Screenshot 2024-06-22 004156.png}
+    \caption{Random Forest Real vs Predicted values}
+    \label{fig:enter-label}
+\end{figure}
+\chapter{Comparison of Models}
+\begin{figure} [!ht]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Comparision of Models.jpg}
+    \caption{Comparision of models}
+    \label{fig:enter-label}
+\end{figure}
+\includegraphics[width=0.5\textwidth]{Screenshot 2024-06-22 004059.png}
+\includegraphics[width=0.5\textwidth]{Screenshot 2024-06-22 004124.png}
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{Screenshot 2024-06-22 004156.png}
+\end{center}
+\chapter{Application of Solar Radiation Prediction} 
+Solar radiation prediction has numerous applications across various industries and fields. Here are some key applications: \\
+\textbf{1. Renewable Energy Planning:} Solar radiation prediction is crucial for planning and 
+optimizing the operation of solar power plants. By forecasting solar radiation levels, 
+energy producers can schedule the generation of solar energy more efficiently, thereby 
+maximizing energy output and reducing costs. \\
+\textbf{2. Grid Integration:} Solar radiation prediction helps grid operators manage the 
+integration of solar energy into the grid. By accurately predicting solar radiation 
+levels, grid operators can anticipate fluctuations in solar power generation and adjust 
+grid operations accordingly to maintain grid stability. \\
+\textbf{3. Energy Storage Management:} Solar radiation prediction is essential for managing 
+energy storage systems, such as batteries. By forecasting solar radiation levels, energy 
+storage systems can be charged or discharged at optimal times, maximizing the use of 
+stored energy. \\
+\textbf{4. Climate Research:} Solar radiation prediction plays a crucial role in climate 
+research. By providing data on solar radiation levels, researchers can better understand 
+the Earth's energy balance, climate patterns, and the impact of solar variability on the 
+climate. \\
+\textbf{5. Agriculture:} Solar radiation prediction is valuable for agricultural planning. By 
+forecasting solar radiation levels, farmers can optimize crop planting and harvesting 
+times, leading to improved yields and resource management. \\
+\textbf{6. Urban Planning:} Solar radiation prediction can inform urban planning efforts, 
+particularly in designing energy-efficient buildings and infrastructure. By considering 
+solar radiation levels, planners can optimize building orientation and design to 
+maximize natural lighting and reduce energy consumption.\\ 
+\textbf{7. Disaster Management:} Solar radiation prediction can be useful in disaster 
+management scenarios, such as predicting solar radiation levels in areas affected by 
+natural disasters. This information can help emergency responders plan relief efforts 
+and mitigate the impact of disasters. \\
+Overall, solar radiation prediction has a wide range of applications that contribute to 
+energy efficiency, sustainability, and climate resilience. 
+\chapter{Future Work of Solar Radiation Prediction}  
+The future of solar radiation prediction is promising, with ongoing advancements in 
+technology and research contributing to improved accuracy and reliability. Here are 
+some key trends and developments shaping the future of solar radiation prediction:\\ 
+\textbf{1. Advanced Machine Learning Techniques:} The use of advanced machine learning 
+techniques, such as deep learning and ensemble methods, is expected to improve the 
+accuracy of solar radiation prediction models. These techniques can better capture 
+complex patterns in solar radiation data and enhance prediction capabilities. \\
+\textbf{2. Integration of Satellite Data:} Continued advancements in satellite technology are 
+enabling the collection of high-resolution data on solar radiation and atmospheric 
+conditions. Integrating this data into prediction models can improve the spatial and 
+temporal resolution of predictions.\\
+\textbf{3. Big Data Analytics:} The increasing availability of big data analytics tools and 
+platforms allows for the analysis of large and diverse datasets. This enables more 
+comprehensive and accurate solar radiation predictions by incorporating a wide range 
+of relevant data sources. \\
+\textbf{4. Integration with Renewable Energy Systems:} Solar radiation prediction models 
+are increasingly being integrated into renewable energy systems, such as solar power 
+plants and grid management systems. This integration enables real-time optimization 
+of energy production and grid operations based on predicted solar radiation levels. \\
+\textbf{5. Climate Change Adaptation:} Solar radiation prediction is becoming increasingly 
+important for climate change adaptation efforts. By providing insights into future solar 
+radiation patterns, these predictions can help policymakers and planners develop 
+strategies to mitigate the impacts of climate change.\\
+\textbf{6. Cross-Disciplinary Collaboration:} Collaboration between researchers from 
+different disciplines, such as meteorology, climatology, and data science, is expected 
+to drive innovation in solar radiation prediction. This collaboration can lead to the 
+development of more holistic and accurate prediction models. \\
+\textbf{7. Increased Accessibility:} As solar energy continues to play a larger role in the 
+global energy mix, there is a growing demand for accessible and reliable solar 
+radiation prediction tools. Efforts to make these tools more user-friendly and 
+accessible to a wider audience are expected to continue.\\ 
+Overall, the future of solar radiation prediction is characterized by advancements in 
+technology, increased integration with renewable energy systems, and a focus on 
+addressing the challenges of climate change. These developments are expected to 
+improve the accuracy and reliability of solar radiation predictions, ultimately 
+supporting the growth of solar energy and sustainable development. 
+\chapter*{Conclusion}
+\addcontentsline{toc}{chapter}{Bibliography}
+In detailed conclusion, solar radiation prediction stands as a crucial pillar supporting 
+the transition towards sustainable energy practices and climate resilience. Through the 
+accurate estimation of solar radiation levels, this field enables optimized energy 
+production, grid stability, cost reduction, climate research, and sustainable urban 
+planning.  \\
+The future of solar radiation prediction is marked by advancements in technology, 
+particularly in machine learning and satellite imagery, which promise to enhance 
+prediction accuracy and spatial-temporal resolution. Moreover, the integration of 
+prediction models with renewable energy systems and climate change adaptation 
+strategies will further solidify the importance of this field in addressing global 
+challenges. \\
+Collaboration across disciplines and sectors will continue to drive innovation in solar 
+radiation prediction, ensuring that it remains at the forefront of renewable energy 
+research and application. By leveraging these advancements, solar radiation prediction 
+will play an increasingly pivotal role in shaping a sustainable and climate-resilient 
+future for generations to come. 
+\chapter*{Bibliography}
+
+\begin{enumerate}[{[1]}]
+    
+   \item Soomin, H.; Lumi, A.; Okorie, E.C.; Uredo, L.R. Investigation of Solar Energy: The Case Study in Malaysia, Indonesia, Colombia and Nigeria. Int. J. Renew. Energy Res. 2019, 9, 86–95.  
+   
+  	\item Abdullah, W.S.W.; Osman, M.; Kadir, M.Z.A.A.; Varaiya, R. The potential and status of renewable energy development in Malaysia. Energies 2019, 12, 2437.2) https://www.kaggle.com/datasets/anikannal/solar-power-generation data
+   
+    \item https://www.sciencedirect.com/science/article/pii/S2666603023000064   
+
+\bibitem{L5}    
+ A. R. Bergen, “Power System Analysis”, Prentice Hall, 2000.
+\bibitem{Peponis}
+R. Seydel, “From Equilibrium to Chaos”, Elsevier, 1988.  
+
+\bibitem{Baran}
+ W. C. Rheinboldt and J. V. Burkardt, “A Locally Parameterized Continuation Process”, ACM 
+Transactions on Mathematical Software, Vol. 9, No. 2, June 1983, pp. 215-235. 
+\bibitem{Venkatesh}
+Youcef Islam Djilani Kobibi, Mohamed Abdeldjalil Djehaf, Mohamed Khatir, Mohamed 
+Ouadafraksou, Continuation Power Flow Analysis of Power System Voltage Stability with Unified 
+Power Flow Controller
+\bibitem{Niknam}
+Soomin, H.; Lumi, A.; Okorie, E.C.; Uredo, L.R. Investigation of Solar Energy: The Case Study in Malaysia, Indonesia, Colombia and Nigeria. Int. J. Renew. Energy Res. 2019, 9, 86–95
+\end{enumerate}
+ \end{document}
